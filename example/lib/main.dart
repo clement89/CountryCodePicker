@@ -100,6 +100,62 @@ class MyAppState extends State<MyApp> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  color: Colors.grey[200],
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  child: SizedBox(
+                    // width: 50.sp,
+                    // height: 50.sp,
+                    child: CountryCodePicker(
+                      boxDecoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        color: Colors.grey[200],
+                      ),
+                      onChanged: (code) {
+                        debugPrint(
+                            "on init ${code.name!} ${code.dialCode} ${code.name}");
+                      },
+                      initialSelection: 'GB',
+                      // showFlagDialog: true,
+                      onInit: (code) {
+                        debugPrint(
+                            "on init ${code!.name!} ${code.dialCode} ${code.name}");
+                      },
+                      flagWidth: 40,
+                      flagDecoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                      ),
+                      padding: EdgeInsets.zero,
+                      hideMainText: true,
+                      showCountryOnly: true,
+                      searchPadding: const EdgeInsets.only(
+                          bottom: 10, left: 10, right: 10),
+                      searchDecoration: InputDecoration(
+                        hintText: 'Search',
+                        prefixIcon: const Icon(Icons.search),
+                        filled: true,
+                        fillColor: Colors.grey,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30.0),
+                          borderSide: BorderSide.none,
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30.0),
+                          borderSide: const BorderSide(
+                            color: Colors.orange,
+                            width: 2.0,
+                          ),
+                        ),
+                      ),
+                      // showOnlyCountryWhenClosed: true,
+                    ),
+                  ),
+                ),
+              ),
               CountryCodePicker(
                 onChanged: print,
                 // Initial selection and favorite can be one of code ('IT') OR dial_code('+39')

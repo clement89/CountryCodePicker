@@ -127,7 +127,8 @@ class CountryCodePicker extends StatefulWidget {
     this.dialogBackgroundColor,
     this.closeIcon = const Icon(Icons.close),
     this.countryList = codes,
-    this.dialogItemPadding = const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+    this.dialogItemPadding =
+        const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
     this.searchPadding = const EdgeInsets.symmetric(horizontal: 24),
     Key? key,
   }) : super(key: key);
@@ -186,22 +187,20 @@ class CountryCodePickerState extends State<CountryCodePicker> {
               if (widget.showFlagMain != null
                   ? widget.showFlagMain!
                   : widget.showFlag)
-                Flexible(
-                  flex: widget.alignLeft ? 0 : 1,
-                  fit: widget.alignLeft ? FlexFit.tight : FlexFit.loose,
-                  child: Container(
-                    clipBehavior: widget.flagDecoration == null
-                        ? Clip.none
-                        : Clip.hardEdge,
-                    decoration: widget.flagDecoration,
-                    margin: widget.alignLeft
-                        ? const EdgeInsets.only(right: 16.0, left: 8.0)
-                        : const EdgeInsets.only(right: 16.0),
-                    child: Image.asset(
-                      selectedItem!.flagUri!,
-                      package: 'country_code_picker',
-                      width: widget.flagWidth,
-                    ),
+                Container(
+                  width: widget.flagWidth,
+                  height: widget.flagWidth,
+                  clipBehavior:
+                      widget.flagDecoration == null ? Clip.none : Clip.hardEdge,
+                  decoration: widget.flagDecoration,
+                  // margin: widget.alignLeft
+                  //     ? const EdgeInsets.only(right: 16.0, left: 8.0)
+                  //     : const EdgeInsets.only(right: 16.0),
+                  child: Image.asset(
+                    selectedItem!.flagUri!,
+                    package: 'country_code_picker',
+                    width: widget.flagWidth,
+                    fit: BoxFit.fill,
                   ),
                 ),
               if (!widget.hideMainText)
