@@ -130,7 +130,12 @@ class MyAppState extends State<MyApp> {
                         shape: BoxShape.circle,
                       ),
                       padding: EdgeInsets.zero,
-                      hideMainText: true,
+                      hideMainText: false,
+                      showDropDownButton: true,
+                      dropDownIcon: const Icon(
+                        Icons.keyboard_arrow_down,
+                        color: Colors.grey,
+                      ),
                       showCountryOnly: true,
                       searchPadding: const EdgeInsets.only(
                           bottom: 10, left: 10, right: 10),

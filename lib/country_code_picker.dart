@@ -28,6 +28,7 @@ class CountryCodePicker extends StatefulWidget {
   final bool enabled;
   final TextOverflow textOverflow;
   final Icon closeIcon;
+  final Icon? dropDownIcon;
 
   /// Barrier color of ModalBottomSheet
   final Color? barrierColor;
@@ -130,6 +131,10 @@ class CountryCodePicker extends StatefulWidget {
     this.dialogItemPadding =
         const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
     this.searchPadding = const EdgeInsets.symmetric(horizontal: 24),
+    this.dropDownIcon = const Icon(
+      Icons.arrow_drop_down_outlined,
+      color: Colors.grey,
+    ),
     Key? key,
   }) : super(key: key);
 
@@ -206,13 +211,16 @@ class CountryCodePickerState extends State<CountryCodePicker> {
               if (!widget.hideMainText)
                 Flexible(
                   fit: widget.alignLeft ? FlexFit.tight : FlexFit.loose,
-                  child: Text(
-                    widget.showOnlyCountryWhenClosed
-                        ? selectedItem!.toCountryStringOnly()
-                        : selectedItem.toString(),
-                    style: widget.textStyle ??
-                        Theme.of(context).textTheme.labelLarge,
-                    overflow: widget.textOverflow,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 8),
+                    child: Text(
+                      widget.showOnlyCountryWhenClosed
+                          ? selectedItem!.toCountryStringOnly()
+                          : selectedItem.toString(),
+                      style: widget.textStyle ??
+                          Theme.of(context).textTheme.labelLarge,
+                      overflow: widget.textOverflow,
+                    ),
                   ),
                 ),
               if (widget.showDropDownButton)
@@ -220,14 +228,11 @@ class CountryCodePickerState extends State<CountryCodePicker> {
                   flex: widget.alignLeft ? 0 : 1,
                   fit: widget.alignLeft ? FlexFit.tight : FlexFit.loose,
                   child: Padding(
-                      padding: widget.alignLeft
-                          ? const EdgeInsets.only(right: 16.0, left: 8.0)
-                          : const EdgeInsets.only(right: 16.0),
-                      child: Icon(
-                        Icons.arrow_drop_down,
-                        color: Colors.grey,
-                        size: widget.flagWidth,
-                      )),
+                    padding: widget.alignLeft
+                        ? const EdgeInsets.only(left: 8.0)
+                        : const EdgeInsets.all(0),
+                    child: widget.dropDownIcon,
+                  ),
                 ),
             ],
           ),
